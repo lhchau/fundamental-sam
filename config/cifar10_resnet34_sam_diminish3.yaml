@@ -1,0 +1,24 @@
+data:
+  name: "cifar10"
+  batch_size: 128
+  num_workers: 4
+  split: [0.9, 0.1]
+
+trainer:
+  sch: "diminish3"
+  seed: 42
+  epochs: 200
+
+model:
+  architecture: "resnet34"
+  name: "sam"
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.001
+  rho: 0.05
+  adaptive: False
+  nesterov: False
+
+wandb:
+  name: "resnet34_diminish3_seed42"
+  project: "Fundamental-SAM-CIFAR10"

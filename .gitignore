@@ -1,0 +1,5 @@
+data/cifar*
+checkpoint/
+*.egg-info
+__pycache__
+wandb

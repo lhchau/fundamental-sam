@@ -1,0 +1,26 @@
+data:
+  name: "cifar10"
+  batch_size: 128
+  num_workers: 4
+  split: [0.9, 0.1]
+
+trainer:
+  sch: "constant_lr"
+  seed: 42
+  factor: 1
+  total_iters: 200
+  epochs: 200
+
+model:
+  architecture: "wrn28_10"
+  name: "sam"
+  lr: 0.001
+  momentum: 0.9
+  weight_decay: 0.001
+  rho: 0.05
+  adaptive: False
+  nesterov: False
+
+wandb:
+  name: "wrn28_10_sam_constant_0001_seed42"
+  project: "Fundamental-SAM-CIFAR10"
