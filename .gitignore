@@ -3,3 +3,4 @@ checkpoint/
 *.egg-info
 __pycache__
 wandb
+data/tiny-imagenet-200/*

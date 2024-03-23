@@ -15,6 +15,7 @@ from fundamental_sam.models import *
 from fundamental_sam.utils import *
 from fundamental_sam.data import *
 from fundamental_sam.scheduler import *
+from fundamental_sam.optimizer import *
 
 current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -55,12 +56,12 @@ data_dict = get_dataloader(
     split=cfg['data']['split']
     )
 
-print(f"==> Loading dataset: {data_name}")
+print(f"==> Loading dataset  : {data_name}")
 train_dataloader, val_dataloader, test_dataloader, num_classes = data_dict['train_dataloader'], data_dict['val_dataloader'], \
     data_dict['test_dataloader'], data_dict['num_classes']
 
 # Model
-print(f'==> Loading model {cfg["model"]["architecture"]}')
+print(f'==> Loading model    : {cfg["model"]["architecture"]}')
 net = get_model(cfg, num_classes=num_classes)
 net = net.to(device)
 if device == 'cuda':
@@ -68,7 +69,7 @@ if device == 'cuda':
     cudnn.benchmark = True
 
 total_params = sum(p.numel() for p in net.parameters())
-
+print(f"==> Number parameters of {cfg['model']['name']}: {total_params}")
 criterion = nn.CrossEntropyLoss()
 
 sch = cfg['trainer'].get('sch', None)
@@ -96,8 +97,7 @@ def train(epoch):
         optimizer.first_step(zero_grad=True)
 
         disable_running_stats(net)  # <- this is the important line
-        second_loss = criterion(net(inputs), targets)
-        second_loss.backward()
+        criterion(net(inputs), targets).backward()
         optimizer.second_step(zero_grad=True)
         
         train_loss += first_loss.item()
@@ -109,7 +109,6 @@ def train(epoch):
         acc = 100.*correct/total
         progress_bar(batch_idx, len(train_dataloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                      % (train_loss_mean, acc, correct, total))
-        
     metrics['train/loss'] = train_loss_mean
     metrics['train/acc'] = acc
     metrics['epoch'] = epoch
