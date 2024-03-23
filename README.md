@@ -2,7 +2,7 @@
 
 **Pham Duy Khanh, Hoang-Chau Luong, Boris S. Mordukhovich, Dat Ba Tran**
 
-This repo implements paper "Fundamental Convergence Analysis of Sharpness-Aware Minimization" in Pytorch. SAM's implementation based on [davda54/sam](https://github.com/davda54/sam).
+This repo implements paper ["Fundamental Convergence Analysis of Sharpness-Aware Minimization"](https://arxiv.org/pdf/2401.08060.pdf) in Pytorch. SAM's implementation based on [davda54/sam](https://github.com/davda54/sam).
 
 ### Getting Started
 
