@@ -13,7 +13,7 @@ import yaml
 
 from fundamental_sam.models import *
 from fundamental_sam.utils import *
-from fundamental_sam.data import *
+from fundamental_sam.dataloader import *
 from fundamental_sam.scheduler import *
 from fundamental_sam.optimizer import *
 
