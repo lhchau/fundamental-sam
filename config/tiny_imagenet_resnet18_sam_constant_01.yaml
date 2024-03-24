@@ -1,26 +1,25 @@
 data:
-  name: "tiny_imagenet"
   batch_size: 128
+  name: tiny_imagenet
   num_workers: 4
-  split: [0.9, 0.1]
-
-trainer:
-  sch: "constant_lr"
-  seed: 42
-  factor: 1
-  total_iters: 200
-  epochs: 90
-
+  split:
+  - 0.9
+  - 0.1
 model:
-  architecture: "resnet18"
-  name: "sam"
+  adaptive: false
+  architecture: resnet18
   lr: 0.1
-  momentum: 0.9
-  weight_decay: 0.001
+  momentum: 0
+  name: sam
+  nesterov: false
   rho: 0.05
-  adaptive: False
-  nesterov: False
-
+  weight_decay: 0.001
+trainer:
+  epochs: 90
+  factor: 1
+  sch: constant_lr
+  seed: 42
+  total_iters: 200
 wandb:
-  name: "tiny_imagenet_sam_constant_01_seed42"
-  project: "Fundamental-SAM-TINY-IMAGENET"
+  name: tiny_imagenet_sam_constant_01_seed42
+  project: Fundamental-SAM-TINY-IMAGENET1-M0

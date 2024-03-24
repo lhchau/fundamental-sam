@@ -1,26 +1,25 @@
 data:
-  name: "cifar10"
   batch_size: 128
+  name: cifar10
   num_workers: 4
-  split: [0.9, 0.1]
-
-trainer:
-  sch: "constant_lr"
-  seed: 42
-  factor: 1
-  total_iters: 200
-  epochs: 200
-
+  split:
+  - 0.9
+  - 0.1
 model:
-  architecture: "resnet34"
-  name: "sam"
+  adaptive: false
+  architecture: resnet34
   lr: 0.001
-  momentum: 0.9
-  weight_decay: 0.001
+  momentum: 0
+  name: sam
+  nesterov: false
   rho: 0.05
-  adaptive: False
-  nesterov: False
-
+  weight_decay: 0.001
+trainer:
+  epochs: 200
+  factor: 1
+  sch: constant_lr
+  seed: 42
+  total_iters: 200
 wandb:
-  name: "resnet34_sam_constant_0001_seed42"
-  project: "Fundamental-SAM-CIFAR10"
+  name: resnet34_sam_constant_0001_seed42
+  project: Fundamental-SAM-CIFAR10-M0

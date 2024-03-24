@@ -167,6 +167,9 @@ class Network(nn.Module):
 
     def _forward_conv(self, x):
         x = self.conv(x)
+        x = self.bn1(x)
+        x = F.relu(x, inplace=True)
+        x = self.maxpool(x)
         x = self.stage1(x)
         x = self.stage2(x)
         x = self.stage3(x)
@@ -176,7 +179,7 @@ class Network(nn.Module):
 
     def forward(self, x):
         x = self._forward_conv(x)
-        x = x.view(x.size(0), -1)
+        x = torch.flatten(x, 1)
         x = self.fc(x)
         return x
     

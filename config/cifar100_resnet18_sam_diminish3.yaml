@@ -1,24 +1,23 @@
 data:
-  name: "cifar100"
   batch_size: 128
+  name: cifar100
   num_workers: 4
-  split: [0.9, 0.1]
-
-trainer:
-  sch: "diminish3"
-  seed: 42
-  epochs: 200
-
+  split:
+  - 0.9
+  - 0.1
 model:
-  architecture: "resnet18"
-  name: "sam"
+  adaptive: false
+  architecture: resnet18
   lr: 0.1
-  momentum: 0.9
-  weight_decay: 0.001
+  momentum: 0
+  name: sam
+  nesterov: false
   rho: 0.05
-  adaptive: False
-  nesterov: False
-
+  weight_decay: 0.001
+trainer:
+  epochs: 200
+  sch: diminish3
+  seed: 42
 wandb:
-  name: "resnet18_diminish3_seed42"
-  project: "Fundamental-SAM-CIFAR100"
+  name: resnet18_diminish3_seed42
+  project: Fundamental-SAM-CIFAR100-M0
