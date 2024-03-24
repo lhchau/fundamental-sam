@@ -167,9 +167,6 @@ class Network(nn.Module):
 
     def _forward_conv(self, x):
         x = self.conv(x)
-        x = self.bn1(x)
-        x = F.relu(x, inplace=True)
-        x = self.maxpool(x)
         x = self.stage1(x)
         x = self.stage2(x)
         x = self.stage3(x)
